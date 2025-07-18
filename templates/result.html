@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ character }}の「{{ category }}」結果</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/result-style.css') }}">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Yu Mincho", serif;
+      background: linear-gradient(to bottom, #1a1c40, #3c2a55);
+      color: #f0e6ff;
+      background-image: url('/static/images/stars-background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: overlay;
+    }
+    header {
+      text-align: center;
+      padding: 25px 20px;
+      font-size: 30px;
+      font-weight: bold;
+      background-color: rgba(44, 30, 63, 0.85);
+      color: #ffd700;
+      text-shadow: 2px 2px #000;
+      margin-bottom: 20px;
+    }
+    .result-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: rgba(60, 42, 85, 0.92);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #000;
+      text-align: center;
+    }
+    .character-image {
+      width: 180px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #000;
+      margin-bottom: 15px;
+    }
+    .character-name {
+      font-size: 28px;
+      font-weight: bold;
+      color: #ffd700;
+      margin-bottom: 5px;
+    }
+    .category-name {
+      font-size: 20px;
+      color: #ffea00;
+      margin-bottom: 20px;
+    }
+    .result-text {
+      background-color: rgba(93, 58, 155, 0.7);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: inset 0 0 10px #000;
+      text-align: left;
+      white-space: pre-wrap;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      color: #e0d8f8;
+      font-size: 16px;
+    }
+    .back-button {
+      display: inline-block;
+      background-color: #a678de;
+      color: #ffd700;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 5px #000;
+      transition: background-color 0.3s, transform 0.2s;
+      margin-bottom: 20px;
+    }
+    .back-button:hover {
+      background-color: #7b4dbf;
+      transform: scale(1.05);
+    }
+    .share-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .share-button {
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 5px #000;
+      transition: background-color 0.3s, transform 0.2s;
+      color: #fff;
+      display: inline-block;
+    }
+    .share-button:hover {
+      transform: scale(1.05);
+    }
+    .share-x { background-color: #000; }
+    .share-facebook { background-color: #1877F2; }
+    .share-line { background-color: #06C755; }
+    .share-others { background-color: #a678de; color: #ffd700; }
+
+    footer {
+      background-color: rgba(44, 30, 63, 0.85);
+      padding: 20px 10px;
+      text-align: center;
+      color: #ffd700;
+      font-size: 14px;
+      font-weight: bold;
+      box-shadow: 0 -2px 5px #000;
+      margin-top: 40px;
+    }
+    .footer-links {
+      margin-top: 10px;
+    }
+    .footer-links a {
+      color: #ffd700;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        font-size: 24px;
+      }
+      .character-name {
+        font-size: 24px;
+      }
+      .category-name {
+        font-size: 18px;
+      }
+      .result-text {
+        font-size: 15px;
+      }
+      .character-image {
+        width: 140px;
+      }
+      .share-button {
+        font-size: 13px;
+        padding: 6px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>AI占い総合館 - 結果</header>
+
+  <div class="result-container">
+    <img class="character-image" src="{{ url_for('static', filename='images/' ~ character ~ '.png') }}" alt="{{ character }}">
+    <div class="character-name">{{ character }}</div>
+    <div class="category-name">「{{ category }}」の占い結果</div>
+    <div class="result-text">{{ result }}</div>
+
+    <a class="back-button" href="/select_character">別のキャラクターで占う</a>
+
+    <div class="share-buttons">
+      <a
+        class="share-button share-x"
+        target="_blank"
+        href="https://twitter.com/intent/tweet?text={{ (character ~ 'の『' ~ category ~ '』占い結果をAI占い総合館でチェック！') | urlencode }}&url={{ request.url_root }}">
+        Xでシェア
+      </a>
+      <a
+        class="share-button share-facebook"
+        target="_blank"
+        href="https://www.facebook.com/sharer/sharer.php?u={{ request.url_root }}">
+        Facebookでシェア
+      </a>
+      <a
+        class="share-button share-line"
+        target="_blank"
+        href="https://social-plugins.line.me/lineit/share?url={{ request.url_root }}">
+        LINEでシェア
+      </a>
+      <button class="share-button share-others" onclick="copyResultText()">
+        その他（コピー）
+      </button>
+    </div>
+  </div>
+
+  <footer class="fixed-footer">
+    <div class="footer-links">
+      <a href="/">トップ</a>
+      <a href="/select_character">キャラクター選択</a>
+      <a href="/character_list">キャラクター紹介</a>
+      <a href="/service">サービス紹介</a>
+      <a href="/about">運営者情報</a>
+      <a href="/privacy">プライバシーポリシー</a>
+      <a href="/contact">お問い合わせ</a>
+    </div>
+  </footer>
+
+  <script>
+    function copyResultText() {
+      const text = "{{ character }}の「{{ category }}」占い結果\n\n{{ result }}\n\nAI占い総合館で体験してね！\n{{ request.url_root }}";
+      navigator.clipboard.writeText(text)
+        .then(() => alert('コピーしました！好きなSNSに貼ってシェアしてください。'))
+        .catch(() => alert('コピーに失敗しました'));
+    }
+  </script>
+</body>
+</html>

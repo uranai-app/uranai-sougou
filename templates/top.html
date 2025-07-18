@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI占い総合館</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/top-style.css') }}">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Yu Mincho", serif;
+      background-color: #1a1c40;
+      color: #f0e6ff;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: rgba(26, 28, 64, 0.95);
+      border-radius: 12px;
+      box-shadow: 0 0 20px #000;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 20px 10px;
+      background-color: #1a1c40;
+      color: #ffd700;
+      font-size: 40px;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px #000;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .video-wrapper {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      max-height: 350px;
+      object-fit: cover;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .introduction {
+      padding: 10px 0;
+    }
+
+    h3 {
+      color: #ffd700;
+      margin-top: 30px;
+      border-bottom: 1px solid #ffd700;
+      padding-bottom: 5px;
+    }
+
+    ul, ol {
+      margin: 15px 0;
+      padding-left: 20px;
+    }
+
+    .dialogue-row {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .dialogue-row img.character-icon {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 10px;
+      box-shadow: 0 0 5px #000;
+      flex-shrink: 0;
+    }
+
+    .character-dialogue {
+      position: relative;
+      background-color: rgba(93, 58, 155, 0.85);
+      padding: 12px 18px;
+      border-radius: 12px;
+      box-shadow: 0 0 5px #000;
+      flex: 1;
+      line-height: 1.6;
+    }
+
+    .character-dialogue.spill::before,
+    .character-dialogue.arca::before {
+      content: "";
+      position: absolute;
+      top: 15px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+
+    .character-dialogue.spill::before {
+      left: -12px;
+      border-width: 8px 12px 8px 0;
+      border-color: transparent #a678de transparent transparent;
+    }
+
+    .character-dialogue.arca::before {
+      right: -12px;
+      border-width: 8px 0 8px 12px;
+      border-color: transparent transparent transparent #e94f4f;
+    }
+
+    .cta-message {
+      background-color: rgba(166, 120, 222, 0.85);
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+      line-height: 1.6;
+    }
+
+    .select-button {
+      display: block;
+      text-align: center;
+      background-color: #a678de;
+      color: #ffd700;
+      padding: 12px 20px;
+      margin: 30px auto 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 5px #000;
+      transition: background-color 0.3s;
+      max-width: 300px;
+    }
+
+    .select-button:hover {
+      background-color: #7b4dbf;
+    }
+
+    .notice-section {
+      background-color: rgba(255, 215, 0, 0.15);
+      border: 1px solid #ffd700;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 30px;
+      color: #ffd700;
+      font-size: 15px;
+    }
+
+    .notice-section h3 {
+      color: #ffd700;
+      margin-top: 0;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ffd700;
+      padding-bottom: 5px;
+    }
+
+    .usage-guide {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .usage-guide img {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px #000;
+    }
+
+    .share-buttons {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .share-button {
+      display: inline-block;
+      margin: 8px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #fff;
+      transition: background-color 0.3s;
+    }
+
+    .share-x { background-color: #000; }
+    .share-facebook { background-color: #3b5998; }
+    .share-line { background-color: #00c300; }
+    .share-others { background-color: #a678de; cursor: pointer; border: none; }
+    .share-button:hover {
+      opacity: 0.85;
+    }
+
+    .footer-links {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #ffd700;
+      opacity: 0.9;
+      font-weight: bold;
+    }
+
+    .footer-links a {
+      color: #ffd700;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      AI占い総合館
+    </div>
+
+    <div class="video-wrapper">
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/top-video.mp4') }}?v=1" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="introduction">
+     <!-- 会話 -->
+<div class="dialogue-row left">
+  <img src="{{ url_for('static', filename='images/spill-kun.png') }}" alt="スピル君" class="character-icon">
+  <div class="character-dialogue spill">
+    🌟 <strong>スピル君</strong>「やっと着いたね、ここが僕たちの占いの館さ。」
+  </div>
+</div>
+
+<div class="dialogue-row right">
+  <img src="{{ url_for('static', filename='images/arca-chan.png') }}" alt="アルカちゃん" class="character-icon">
+  <div class="character-dialogue arca">
+    🌟 <strong>アルカちゃん</strong>「ようこそ、AI占い総合館へ♡ 今日はどんな悩みを占いましょうか？」
+  </div>
+</div>
+
+<div class="dialogue-row left">
+  <img src="{{ url_for('static', filename='images/spill-kun.png') }}" alt="スピル君" class="character-icon">
+  <div class="character-dialogue spill">
+    🌟 <strong>スピル君</strong>「ここではAIキャラクターたちが本気で相談に乗るんだ。」
+  </div>
+</div>
+
+<div class="dialogue-row right">
+  <img src="{{ url_for('static', filename='images/arca-chan.png') }}" alt="アルカちゃん" class="character-icon">
+  <div class="character-dialogue arca">
+    🌟 <strong>アルカちゃん</strong>「イケメン彼氏もいれば、賢者さまもいるし、私みたいなタロット担当もいるんだから♪」
+  </div>
+</div>
+
+<div class="dialogue-row left">
+  <img src="{{ url_for('static', filename='images/spill-kun.png') }}" alt="スピル君" class="character-icon">
+  <div class="character-dialogue spill">
+    🌟 <strong>スピル君</strong>「相談内容によってぴったりのキャラを選んでね。何度でも無料だし、気軽に試してほしいな。」
+  </div>
+</div>
+
+<div class="dialogue-row right">
+  <img src="{{ url_for('static', filename='images/arca-chan.png') }}" alt="アルカちゃん" class="character-icon">
+  <div class="character-dialogue arca">
+    🌟 <strong>アルカちゃん</strong>「ちょっとドキドキするけど、未来をのぞくのって楽しいよね♡」
+  </div>
+</div>
+
+<h3>サービスの特徴</h3>
+<ul>
+  <li>・完全無料で何度でも相談可能</li>
+  <li>・キャラクターごとに異なる専門分野と口調</li>
+  <li>・相性診断、風水、未来からの手紙など多彩なメニュー</li>
+  <li>・スマホ・PC対応の美しいデザイン</li>
+  <li>・SNSシェアボタンで結果を友達にも見せられる</li>
+</ul>
+
+<div class="dialogue-row left">
+  <img src="{{ url_for('static', filename='images/spill-kun.png') }}" alt="スピル君" class="character-icon">
+  <div class="character-dialogue spill">
+    🌟 <strong>スピル君</strong>「安心してね。プライバシーは絶対に守るから。」
+  </div>
+</div>
+
+<div class="dialogue-row right">
+  <img src="{{ url_for('static', filename='images/arca-chan.png') }}" alt="アルカちゃん" class="character-icon">
+  <div class="character-dialogue arca">
+    🌟 <strong>アルカちゃん</strong>「私たちも秘密は守る主義だしね。」
+  </div>
+</div>
+
+<h3>ご利用方法</h3>
+<ol>
+  <li>① トップページの「AIキャラクターを選択」ボタンをタップ</li>
+  <li>② 好みのキャラクターと占いの種類を選ぶ</li>
+  <li>③ 必要な情報を入力して「占ってもらう」を押す</li>
+  <li>④ 数秒後、本格的な占い結果が届く！</li>
+</ol>
+
+<div class="cta-message">
+  🌟 <strong>スピル君</strong>「この館を冒険して、まだ知らない未来をちょっとだけのぞいてみよう。」<br>
+  🌟 <strong>アルカちゃん</strong>「私たちAI占い師みんなで待ってるよ♪」
+</div>
+
+    </div>
+
+    <div class="notice-section">
+      <h3>⚠️ 注意事項</h3>
+      <ul>
+        <li>① 当サイトの占い結果は、あくまでエンターテインメントを目的としたものであり、現実の行動や判断を保証するものではありません。</li>
+        <li>② 診断内容は医療、法律、その他専門家の意見に代わるものではありません。必要に応じて専門家へご相談ください。</li>
+        <li>③ 入力いただいた情報は占い結果生成以外の目的には使用しません。</li>
+        <li>④ 占い結果には個人差があり、同じ内容を入力しても結果が変わる場合があります。</li>
+        <li>⑤ 当サイトの占いは基本無料でご利用いただけますが、今後予告なく内容や仕様を変更する場合があります。</li>
+      </ul>
+    </div>
+
+    <a href="/select_character" class="select-button">✨ AIキャラクターを選択 ✨</a>
+
+    <div class="usage-guide">
+     <h2>ご利用ガイド</h2>
+     <p>以下の流れで占いをお楽しみください。</p>
+     <video autoplay muted loop playsinline style="max-width: 700px; width: 100%; border-radius: 12px; box-shadow: 0 0 10px #000;">
+      <source src="{{ url_for('static', filename='videos/guide.mp4') }}" type="video/mp4">
+      お使いのブラウザは動画に対応していません。
+     </video>
+    </div>
+
+
+    <div class="share-buttons">
+      <a class="share-button share-x" target="_blank"
+         href="https://twitter.com/intent/tweet?text={{ 'AI占い総合館で占ってみよう！' | urlencode }}&url={{ request.url_root }}">
+        Xでシェア
+      </a>
+      <a class="share-button share-facebook" target="_blank"
+         href="https://www.facebook.com/sharer/sharer.php?u={{ request.url_root }}">
+        Facebookでシェア
+      </a>
+      <a class="share-button share-line" target="_blank"
+         href="https://social-plugins.line.me/lineit/share?url={{ request.url_root }}">
+        LINEでシェア
+      </a>
+      <button class="share-button share-others" onclick="copyTopText()">
+        その他（コピー）
+      </button>
+ </div>
+
+ <footer class="fixed-footer">
+  <div class="footer-links">
+    <a href="/">トップ</a>
+    <a href="/select_character">キャラクター選択</a>
+    <a href="/service">サービス紹介</a>
+    <a href="/about">運営者情報</a>
+    <a href="/privacy">プライバシーポリシー</a>
+    <a href="/contact">お問い合わせ</a>
+  </div>
+ </footer>
+
+ </div>
+
+ <script>
+    function copyTopText() {
+      const text = "AI占い総合館で占ってみよう！\n{{ request.url_root }}";
+      navigator.clipboard.writeText(text)
+        .then(() => alert('コピーしました！好きなSNSに貼ってシェアしてください。'))
+        .catch(() => alert('コピーに失敗しました'));
+    }
+ </script>
+ </body>
+ </html>

@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Yu Mincho", serif;
+  background: linear-gradient(to bottom, #1a1c40, #3c2a55);
+  color: #f0e6ff;
+  background-image: url('/static/images/stars-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+}
+
+header {
+  text-align: center;
+  padding: 25px 20px;
+  font-size: 32px;
+  font-weight: bold;
+  background-color: rgba(44, 30, 63, 0.85);
+  color: #ffd700;
+  text-shadow: 2px 2px #000;
+  margin-bottom: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: rgba(60, 42, 85, 0.9);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #000;
+}
+
+.character-card {
+  background-color: rgba(93, 58, 155, 0.7);
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #000;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.character-card:hover {
+  background-color: rgba(123, 77, 191, 0.85);
+  transform: scale(1.02);
+}
+
+.character-name {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffd700;
+  margin-bottom: 10px;
+}
+
+.character-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #e0d8f8;
+}
+
+.select-button {
+  display: inline-block;
+  background-color: #a678de;
+  color: #ffd700;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 0 5px #000;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.select-button:hover {
+  background-color: #7b4dbf;
+  transform: scale(1.05);
+}
+
+footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+@media (max-width: 600px) {
+  header {
+    font-size: 26px;
+  }
+  .character-name {
+    font-size: 20px;
+  }
+  .character-desc {
+    font-size: 14px;
+  }
+  .select-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}

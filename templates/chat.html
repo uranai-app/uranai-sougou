@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相談する - {{ character }}</title>
+    <style>
+        body {
+            background-color: #2c1e3f;
+            color: #f0e6ff;
+            font-family: "Yu Mincho", serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #3c2a55;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #000;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px #000;
+        }
+        form {
+            margin-top: 20px;
+        }
+        textarea {
+            width: 90%;
+            max-width: 500px;
+            height: 150px;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+            font-family: "Yu Mincho", serif;
+            resize: vertical;
+        }
+        button {
+            margin-top: 20px;
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            background-color: #a678de;
+            color: white;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #8b5fc3;
+            transform: scale(1.05);
+        }
+
+        /* ✅ スマホ対応メディアクエリ */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                width: 95%;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            textarea {
+                height: 120px;
+                font-size: 14px;
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔮 {{ character }} に相談してみよう 🔮</h1>
+        <form method="post">
+            <textarea id="user_input" name="user_input" placeholder="あなたの悩みを自由に書いてください..."></textarea><br>
+            <button type="submit">占ってもらう</button>
+        </form>
+    </div>
+</body>
+</html>

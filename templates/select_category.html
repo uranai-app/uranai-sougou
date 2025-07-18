@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>占いカテゴリー選択</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #1a1c40, #3c2a55);
+            background-image: url('/static/stars-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            font-family: "Yu Mincho", serif;
+            color: #f0e6ff;
+        }
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 36px;
+            font-weight: bold;
+            background-color: rgba(44, 30, 63, 0.85);
+            color: #ffd700;
+            text-shadow: 2px 2px #000;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(60, 42, 85, 0.85);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #000;
+        }
+        .category-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(93, 58, 155, 0.6);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .category-row:hover {
+            background-color: rgba(123, 77, 191, 0.8);
+            transform: scale(1.02);
+        }
+        .category-button {
+            background-color: #a678de;
+            color: #ffd700;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 0 5px #000;
+        }
+        .category-desc {
+            flex: 1;
+            margin-left: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #e0d8f8;
+        }
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <header>占いカテゴリーを選択</header>
+    <div class="container">
+        <div class="category-row">
+            <a class="category-button" href="/form?type=今日の運勢">今日の運勢</a>
+            <div class="category-desc">今日だけの運勢を特化して占います。短期的アドバイスを得たい方へ。</div>
+        </div>
+        <div class="category-row">
+            <a class="category-button" href="/form?type=タロット">タロット占い</a>
+            <div class="category-desc">78枚のカードから運命を読み解きます。深い洞察を得たい方向け。</div>
+        </div>
+        <div class="category-row">
+            <a class="category-button" href="/form?type=風水">風水</a>
+            <div class="category-desc">住む場所や方角をもとに運気を診断。引越し・模様替えを考える方へ。</div>
+        </div>
+        <div class="category-row">
+            <a class="category-button" href="/form?type=血液型占い">血液型占い</a>
+            <div class="category-desc">血液型から性格傾向や相性を分析。話題作りにもおすすめ。</div>
+        </div>
+        <div class="category-row">
+            <a class="category-button" href="/form?type=相性診断">相性診断</a>
+            <div class="category-desc">相手との生年月日から関係性を分析。恋愛・仕事の人間関係を見直すきっかけに。</div>
+        </div>
+        <div class="category-row">
+            <a class="category-button" href="/form?type=感情分析">感情分析</a>
+            <div class="category-desc">今の気持ちをAIが解釈し、整理します。モヤモヤを言語化したい方へ。</div>
+        </div>
+        <div class="category-row">
+            <a class="category-button" href="/form?type=生年月日占い">生年月日占い</a>
+            <div class="category-desc">生年月日から性格や運勢を読み解きます。シンプルで定番の占い。</div>
+        </div>
+        <div class="category-row">
+            <a class="category-button" href="/form?type=数秘術">数秘術</a>
+            <div class="category-desc">数字に隠された運命や使命を解読。深い自己分析がしたい方へ。</div>
+        </div>
+        <div class="category-row">
+            <a class="category-button" href="/form?type=九星気学">九星気学</a>
+            <div class="category-desc">生年月日と方位をもとに吉凶を判断。引越しや時期選びに最適。</div>
+        </div>
+        <div class="category-row">
+            <a class="category-button" href="/form?type=未来からのお手紙">未来からのお手紙</a>
+            <div class="category-desc">AIが未来からのメッセージを生成。楽しみながらアドバイスを。</div>
+        </div>
+        <div class="category-row">
+            <a class="category-button" href="/form?type=一年後の手紙(小説風)">一年後の手紙(小説風)</a>
+            <div class="category-desc">一年後の自分から届く手紙を物語調で。目標設定や自己洞察に。</div>
+        </div>
+    </div>
+    <footer>
+        &copy; 2025 AI占い総合館 All Rights Reserved.
+    </footer>
+</body>
+</html>

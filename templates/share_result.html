@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>占い結果をシェア</title>
+    <style>
+        body {
+            background-color: #2c1e3f;
+            color: #f0e6ff;
+            font-family: "Yu Mincho", serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px #000;
+        }
+        p {
+            white-space: pre-wrap;
+            background-color: #3c2a55;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        .share-buttons a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #a678de;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+        .share-buttons a:hover {
+            background-color: #8b5fc3;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌟 あなたの占い結果 🌟</h1>
+    <p>{{ result }}</p>
+
+    <div class="share-buttons">
+        <a href="https://twitter.com/intent/tweet?text={{ result | urlencode }}" target="_blank">X でシェア</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.url }}" target="_blank">Facebook でシェア</a>
+        <a href="https://social-plugins.line.me/lineit/share?text={{ result | urlencode }}" target="_blank">LINE でシェア</a>
+        <a onclick="copyText()" style="cursor:pointer;">Instagram 用にコピー</a>
+    </div>
+
+    <script>
+        function copyText() {
+            navigator.clipboard.writeText(`{{ result }}`);
+            alert("結果をコピーしました！Instagramのストーリーなどに貼ってください。");
+        }
+    </script>
+</body>
+</html>

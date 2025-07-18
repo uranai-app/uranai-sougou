@@ -1,0 +1,307 @@
+/* ───────────────────
+   トップ共通スタイル
+─────────────────── */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Yu Mincho", serif;
+  background: linear-gradient(to bottom, #1a1c40, #3c2a55);
+  color: #f0e6ff;
+  background-image: url('/static/images/stars-background.jpg?v=2');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+}
+
+.container {
+  background-color: rgba(44, 30, 63, 0.9);
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #000;
+}
+
+header {
+  font-size: 40px;
+  text-align: center;
+  font-weight: bold;
+  color: #FFD700;
+  text-shadow: 2px 2px #000;
+  margin-bottom: 10px;
+}
+
+/* ───────────────────
+   トップ動画（video-wrapper）
+─────────────────── */
+.video-wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  border-radius: 0;
+  overflow: hidden;
+  padding: 0;
+  box-shadow: none;
+  background: none;
+  border: none;
+  text-align: center;
+}
+
+.video-wrapper video {
+  display: block;
+  width: 90%;
+  max-width: 600px;
+  height: auto;
+  margin: 0 auto;
+  border: none;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* スマホ対応動画サイズ */
+@media (max-width: 600px) {
+  .video-wrapper video {
+    width: 95%;
+    max-width: 100%;
+  }
+}
+
+/* ───────────────────
+   イントロダクション領域
+─────────────────── */
+.introduction {
+  background-color: rgba(60, 42, 85, 0.85);
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 30px;
+  line-height: 1.7;
+  box-shadow: 0 0 15px #000;
+}
+
+.introduction h2,
+.introduction h3 {
+  color: #ffd700;
+  text-shadow: 1px 1px #000;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.introduction p,
+.introduction li {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.introduction ul,
+.introduction ol {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+/* ───────────────────
+   吹き出しスタイル
+─────────────────── */
+.character-dialogue {
+  background-color: rgba(93, 58, 155, 0.85);
+  padding: 15px 20px;
+  border-radius: 12px;
+  margin: 15px 0;
+  box-shadow: inset 0 0 5px #000;
+  font-size: 16px;
+  line-height: 1.6;
+  border: none;
+}
+
+/* スピル君：左縁紫 */
+.character-dialogue.spill {
+  border-left: 5px solid #a678de;
+}
+
+/* アルカちゃん：右吹き出し時のみ右縁赤 */
+.dialogue-row.right .character-dialogue.arca {
+  border-right: 5px solid #e4405f;
+}
+
+/* アルカちゃん：左吹き出し時は縁なし */
+.dialogue-row.left .character-dialogue.arca {
+  border: none;
+}
+
+/* ───────────────────
+   ダイアログ行レイアウト
+─────────────────── */
+.dialogue-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 16px 0;
+}
+.dialogue-row.left {
+  flex-direction: row;
+}
+.dialogue-row.right {
+  flex-direction: row-reverse;
+}
+
+/* ───────────────────
+   キャラクターアイコン
+─────────────────── */
+.character-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 5px #000;
+  background-color: rgba(60, 42, 85, 0.8);
+}
+
+/* ───────────────────
+   CTAメッセージ
+─────────────────── */
+.cta-message {
+  background-color: rgba(44, 30, 63, 0.9);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 30px;
+  box-shadow: 0 0 10px #000;
+}
+
+.cta-message p {
+  font-weight: bold;
+  color: #ffd700;
+  margin: 10px 0;
+}
+
+/* ───────────────────
+   ボタン・ガイド・シェア領域
+─────────────────── */
+.select-button {
+  display: block;
+  text-align: center;
+  margin: 30px auto;
+  padding: 20px 40px;
+  background-color: #5d3a9b;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 22px;
+  box-shadow: 0 0 10px #000;
+  transition: background-color 0.3s, transform 0.2s;
+  max-width: 300px;
+}
+
+.select-button:hover {
+  background-color: #7b4dbf;
+  transform: scale(1.05);
+}
+
+.usage-guide {
+  background-color: rgba(60, 42, 85, 0.8);
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.usage-guide img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.share-buttons {
+  margin-top: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.share-button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.share-button:hover {
+  transform: scale(1.05);
+}
+
+.share-x { background-color: #000; }
+.share-x:hover { background-color: #333; }
+.share-instagram { background-color: #E4405F; }
+.share-instagram:hover { background-color: #D03050; }
+.share-line { background-color: #00C300; }
+.share-line:hover { background-color: #00A000; }
+.share-facebook { background-color: #3b5998; }
+.share-facebook:hover { background-color: #2d4373; }
+
+footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+/* ───────────────────
+   レスポンシブ
+─────────────────── */
+@media (max-width: 600px) {
+  header {
+    font-size: 32px;
+  }
+  .character-dialogue {
+    font-size: 15px;
+  }
+  .introduction h2 {
+    font-size: 24px;
+  }
+  .introduction h3 {
+    font-size: 20px;
+  }
+  .select-button {
+    font-size: 20px;
+    padding: 15px 30px;
+  }
+}
+/* ───────────────────
+   キャラクター画像共通スタイル
+─────────────────── */
+.character-image {
+  width: 160px;
+  height: auto;
+  border-radius: 16px;
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.character-image:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(255, 215, 0, 0.7);
+  border-color: #ffd700;
+}
+.fixed-footer {
+  background-color: rgba(60, 42, 85, 0.9);
+  padding: 15px 0;
+  text-align: center;
+}
+
+.footer-links a {
+  color: #ffd700;  /* ← ゴールド */
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}

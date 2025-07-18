@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  padding: 20px;
+  background: linear-gradient(to bottom, #1a1c40, #3c2a55);
+  font-family: "Yu Mincho", serif;
+  color: #f0e6ff;
+  background-image: url('/static/images/stars-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+}
+
+.dialogue-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dialogue-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.dialogue-row.left {
+  flex-direction: row;
+}
+
+.dialogue-row.right {
+  flex-direction: row-reverse;
+}
+
+.character-icon {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #000;
+  background-color: rgba(60, 42, 85, 0.8);
+}
+
+.speech-bubble {
+  max-width: 60%;
+  background-color: rgba(93, 58, 155, 0.85);
+  padding: 15px 20px;
+  border-radius: 15px;
+  box-shadow: inset 0 0 5px #000;
+  line-height: 1.6;
+  position: relative;
+  font-size: 16px;
+}
+
+.speech-bubble.spill {
+  border-left: 5px solid #a678de;
+}
+
+.speech-bubble.arca {
+  border-right: 5px solid #e4405f;
+}
+
+@media (max-width: 600px) {
+  .character-icon {
+    width: 100px;
+    height: 100px;
+  }
+  .speech-bubble {
+    max-width: 75%;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>お問い合わせ - AI占い総合館</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/top-style.css') }}">
+  <style>
+    .contact-container {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: rgba(60, 42, 85, 0.9);
+      border-radius: 10px;
+      color: #f0e6ff;
+      box-shadow: 0 0 10px #000;
+    }
+    h1 {
+      text-align: center;
+      color: #ffd700;
+      margin-bottom: 20px;
+    }
+    p {
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 10px;
+    }
+    button {
+      background-color: #a678de;
+      color: #ffd700;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #7b4dbf;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="contact-container">
+    <h1>お問い合わせ</h1>
+    <p>
+      AI占い総合館へのお問い合わせは以下のフォームよりお願いします。<br>
+      ご意見・ご要望・不具合報告など、お気軽にお寄せください。<br>
+      返信が必要な場合は、メールアドレスを正確にご入力ください。
+    </p>
+    <form method="post" action="/contact">
+      <label for="name">お名前</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">メールアドレス</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">お問い合わせ内容</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">送信する</button>
+    </form>
+  </div>
+  <footer>
+    &copy; 2025 AI占い総合館 All Rights Reserved.
+  </footer>
+</body>
+</html>

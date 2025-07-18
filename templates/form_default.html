@@ -1,0 +1,16 @@
+{% extends "base_form.html" %}
+{% block content %}
+<h2>汎用占いフォーム</h2>
+<form method="post" action="{{ url_for('chat', character=character, category=category) }}">
+  <label>名前:</label>
+  <input type="text" name="name" required>
+
+  <label>生年月日:</label>
+  <input type="date" name="birthdate">
+
+  <label>相談内容:</label>
+  <textarea name="question"></textarea>
+
+  <button type="submit">占ってもらう</button>
+</form>
+{% endblock %}

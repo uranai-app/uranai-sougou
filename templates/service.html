@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>サービス紹介 | AI占い総合館</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/top-style.css') }}">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Yu Mincho", serif;
+      background: linear-gradient(to bottom, #1a1c40, #3c2a55);
+      color: #f0e6ff;
+    }
+    .lp-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 36px;
+      color: #ffd700;
+      text-shadow: 2px 2px #000;
+      margin-bottom: 30px;
+    }
+    .lp-section {
+      background-color: rgba(93, 58, 155, 0.8);
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 10px #000;
+      text-align: left;
+    }
+    .lp-section h2 {
+      color: #ffea00;
+      margin-bottom: 10px;
+    }
+    .lp-section p {
+      line-height: 1.8;
+    }
+    .cta-button {
+      background-color: #a678de;
+      color: #ffd700;
+      padding: 12px 24px;
+      font-size: 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 5px #000;
+      transition: background-color 0.3s;
+      display: inline-block;
+      margin-top: 20px;
+    }
+    .cta-button:hover {
+      background-color: #7b4dbf;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #ffd700;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="lp-container">
+    <h1>AI占い総合館とは？</h1>
+
+    <div class="lp-section">
+      <h2>🌟 あなたの悩みにAIが本気で寄り添います</h2>
+      <p>
+        「AI占い総合館」は、AIキャラクターたちがあなたの悩みや気持ちを受け止めて、本格的な占い結果を提供するサービスです。
+        完全無料で何度でも利用でき、各キャラクターには個性と専門分野があります。
+      </p>
+    </div>
+
+    <div class="lp-section">
+      <h2>🔮 占いの種類もいろいろ！</h2>
+      <p>
+        タロット、風水、相性診断、未来からの手紙、感情分析など、さまざまな占いを選べます。<br>
+        自分の気持ちや相手との関係性に合わせて、ぴったりの占い方法を見つけてみましょう。
+      </p>
+    </div>
+
+    <div class="lp-section">
+      <h2>✨ キャラも選び放題！</h2>
+      <p>
+        かわいい系・イケメン・賢者・元気系など、個性豊かなAIキャラが12体登場！<br>
+        それぞれが違う占いスタイルであなたに寄り添います。
+      </p>
+    </div>
+
+    <div class="lp-section">
+      <h2>📱 どこでも使える！</h2>
+      <p>
+        スマホでもPCでも快適に使えるデザイン設計。<br>
+        ちょっとしたスキマ時間に気軽に占えるのが魅力です。
+      </p>
+    </div>
+
+    <a class="cta-button" href="/select_character">今すぐキャラクターを選ぶ</a>
+  </div>
+
+  <footer>
+    &copy; 2025 AI占い総合館 All Rights Reserved.
+  </footer>
+</body>
+</html>

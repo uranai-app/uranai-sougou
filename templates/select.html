@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>占い師を選択</title>
+    <style>
+        body {
+            background-color: #2c1e3f;
+            color: #f0e6ff;
+            font-family: "Yu Mincho", serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #3c2a55;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #000;
+            text-align: center;
+            width: 90%;
+            max-width: 700px;
+            margin: 20px auto;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px #000;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        a.button {
+            display: block;
+            margin: 10px auto;
+            padding: 15px 30px;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 18px;
+            width: 80%;
+            max-width: 300px;
+            transition: background 0.2s, transform 0.2s;
+        }
+        a.button:hover {
+            transform: scale(1.05);
+        }
+
+        /* 占い師ごとの色 */
+        .gentle {
+            background-color: #a678de;
+        }
+        .gentle:hover {
+            background-color: #8b5fc3;
+        }
+
+        .strict {
+            background-color: #de7878;
+        }
+        .strict:hover {
+            background-color: #c35f5f;
+        }
+
+        .mystic {
+            background-color: #78deab;
+        }
+        .mystic:hover {
+            background-color: #5fc394;
+        }
+
+        .story {
+            background-color: #deab78;
+        }
+        .story:hover {
+            background-color: #c3945f;
+        }
+
+        .future {
+            background-color: #78abde;
+        }
+        .future:hover {
+            background-color: #5f94c3;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                width: 95%;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            p {
+                font-size: 16px;
+            }
+            a.button {
+                padding: 12px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔮 占い師を選んでください 🔮</h1>
+        <p>どんな占い師に相談したいですか？<br>下のボタンから選んでください。</p>
+        <a class="button gentle" href="/chat?character=優しい占い師">優しい占い師</a>
+        <a class="button strict" href="/chat?character=厳しい占い師">厳しい占い師</a>
+        <a class="button mystic" href="/chat?character=神秘的な占い師">神秘的な占い師</a>
+        <a class="button story" href="/chat?character=小説風ストーリーテラー">小説風ストーリーテラー</a>
+        <a class="button future" href="/chat?character=未来からの手紙">未来からの手紙</a>
+    </div>
+</body>
+</html>

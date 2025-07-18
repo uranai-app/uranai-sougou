@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  font-family: "Yu Mincho", serif;
+  background: linear-gradient(to bottom, #1a1c40, #3c2a55);
+  color: #f0e6ff;
+  background-image: url('/static/images/stars-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+}
+
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 30px;
+  background-color: rgba(60, 42, 85, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 0 15px #000;
+}
+
+header {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffd700;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px #000;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+input, select, textarea {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: rgba(93, 58, 155, 0.85);
+  border: 1px solid #a678de;
+  color: #ffd700;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+button {
+  margin-top: 30px;
+  padding: 12px 20px;
+  background-color: #a678de;
+  color: #ffd700;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #7b4dbf;
+  transform: scale(1.03);
+}
+
+@media (max-width: 600px) {
+  header {
+    font-size: 24px;
+  }
+  button {
+    font-size: 16px;
+  }
+}

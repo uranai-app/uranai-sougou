@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI占い総合館 - あなたの未来をそっと覗く</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/top-style.css') }}">
+  <style>
+    .hero {
+      background: rgba(26, 28, 64, 0.85);
+      text-align: center;
+      padding: 60px 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #000;
+      margin: 20px auto;
+      max-width: 900px;
+    }
+    .hero h1 {
+      font-size: 42px;
+      color: #ffd700;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px #000;
+    }
+    .hero p {
+      font-size: 18px;
+      color: #e0d8f8;
+      margin-bottom: 25px;
+    }
+    .cta-button {
+      display: inline-block;
+      background-color: #a678de;
+      color: #ffd700;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 10px #000;
+      transition: background-color 0.3s, transform 0.2s;
+      font-size: 18px;
+    }
+    .cta-button:hover {
+      background-color: #7b4dbf;
+      transform: scale(1.05);
+    }
+    .section {
+      background-color: rgba(60, 42, 85, 0.85);
+      margin: 30px auto;
+      padding: 30px 20px;
+      max-width: 900px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #000;
+    }
+    .section h2 {
+      color: #ffd700;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 32px;
+      text-shadow: 1px 1px #000;
+    }
+    .section p, .section li {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #e0d8f8;
+      margin-bottom: 10px;
+    }
+    .features-list {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+    }
+    .features-list li {
+      margin-bottom: 10px;
+      padding: 8px 12px;
+      background-color: rgba(93, 58, 155, 0.7);
+      border-radius: 8px;
+      display: inline-block;
+      margin-right: 8px;
+      margin-left: 8px;
+    }
+    .footer-links {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 14px;
+      color: #ffd700;
+      opacity: 0.9;
+      font-weight: bold;
+    }
+    .footer-links a {
+      color: #ffd700;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>AI占い総合館へようこそ</h1>
+    <p>12人のAI占い師が、あなたの未来をそっと覗きます。<br>
+    深く、優しく、神秘的な占い体験を。</p>
+    <a class="cta-button" href="/select_character">✨ 今すぐ占ってみる ✨</a>
+  </div>
+
+  <div class="section">
+    <h2>サービスの特徴</h2>
+    <ul class="features-list">
+      <li>完全無料で何度でも利用可能</li>
+      <li>本格的AI占いで納得の結果</li>
+      <li>12人の専門AI占い師が対応</li>
+      <li>スマホ・PCどちらも快適対応</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>使い方はとても簡単</h2>
+    <ol>
+      <li>① 好きなキャラクターを選ぶ</li>
+      <li>② 質問やお悩みを入力</li>
+      <li>③ AI占い師が本格鑑定</li>
+      <li>④ 数秒で結果をお届け</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h2>12人のAI占い師たち</h2>
+    <p>それぞれ専門分野を持った個性豊かなAI占い師が、<br>
+    あなたの相談に合わせた鑑定を提供します。</p>
+    <p style="text-align: center;">
+      <a class="cta-button" href="/select_character">キャラクターを選ぶ</a>
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>安心宣言</h2>
+    <ul>
+      <li>✅ 完全無料で安心して試せます</li>
+      <li>✅ 相談内容は占い以外に利用しません</li>
+      <li>✅ プライバシーを厳守します</li>
+    </ul>
+  </div>
+
+  <div class="section" style="text-align: center;">
+    <a class="cta-button" href="/select_character">✨ 今すぐ無料で占う ✨</a>
+  </div>
+
+  <footer class="fixed-footer">
+    <div class="footer-links">
+      <a href="/">トップ</a>
+      <a href="/select_character">キャラクター選択</a>
+      <a href="/service">サービス紹介</a>
+      <a href="/about">運営者情報</a>
+      <a href="/privacy">プライバシーポリシー</a>
+      <a href="/contact">お問い合わせ</a>
+    </div>
+    <div style="text-align: center; margin-top: 10px;">
+      &copy; 2025 AI占い総合館 All Rights Reserved.
+    </div>
+  </footer>
+</body>
+</html>

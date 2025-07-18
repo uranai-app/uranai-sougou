@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ character }} の「{{ category }}」占いフォーム</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Yu Mincho", serif;
+      background: linear-gradient(to bottom, #1a1c40, #3c2a55);
+      color: #f0e6ff;
+      background-image: url('/static/images/stars-background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: overlay;
+    }
+    .form-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: rgba(60, 42, 85, 0.9);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #000;
+    }
+    header {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      color: #ffd700;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px #000;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      font-weight: bold;
+      color: #ffea00;
+      margin-bottom: 5px;
+    }
+    input, select, textarea {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      background-color: rgba(93, 58, 155, 0.7);
+      color: #f0e6ff;
+      box-shadow: inset 0 0 5px #000;
+      resize: vertical;
+    }
+    button {
+      background-color: #a678de;
+      color: #ffd700;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 5px #000;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background-color: #7b4dbf;
+      transform: scale(1.05);
+    }
+    footer {
+      background-color: rgba(44, 30, 63, 0.85);
+      padding: 20px 10px;
+      text-align: center;
+      color: #ffd700;
+      font-size: 14px;
+      font-weight: bold;
+      box-shadow: 0 -2px 5px #000;
+      margin-top: 40px;
+    }
+    .footer-links {
+      margin-top: 10px;
+    }
+    .footer-links a {
+      color: #ffd700;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+      header {
+        font-size: 24px;
+      }
+      button {
+        font-size: 16px;
+        padding: 10px;
+      }
+      input, select, textarea {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <header>{{ character }} の「{{ category }}」占い</header>
+    <form method="post" action="{{ url_for('loading') }}">
+      <input type="hidden" name="character" value="{{ character }}">
+      <input type="hidden" name="category" value="{{ category }}">
+
+      {% for field in form_fields %}
+        <label for="{{ field.name }}">{{ field.label }}</label>
+        {% if "生年月日" in field.label %}
+          <input type="date" id="{{ field.name }}" name="{{ field.name }}" required>
+        {% elif "血液型" in field.label %}
+          <select id="{{ field.name }}" name="{{ field.name }}" required>
+            <option value="">選択してください</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="O">O</option>
+            <option value="AB">AB</option>
+          </select>
+        {% elif "今の気持ち" in field.label or "相談" in field.label or "質問" in field.label or "内容" in field.label %}
+          <textarea id="{{ field.name }}" name="{{ field.name }}" required></textarea>
+        {% else %}
+          <input type="text" id="{{ field.name }}" name="{{ field.name }}" required>
+        {% endif %}
+      {% endfor %}
+
+      <button type="submit">占ってもらう</button>
+    </form>
+  </div>
+
+  <footer class="fixed-footer">
+    <div class="footer-links">
+      <a href="/">トップ</a>
+      <a href="/select_character">キャラクター選択</a>
+      <a href="/character_list">キャラクター紹介</a>
+      <a href="/service">サービス紹介</a>
+      <a href="/about">運営者情報</a>
+      <a href="/privacy">プライバシーポリシー</a>
+      <a href="/contact">お問い合わせ</a>
+    </div>
+  </footer>
+</body>
+</html>

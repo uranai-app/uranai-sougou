@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>占い中...</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #1a1c40;
+      color: #f0e6ff;
+      font-family: "Yu Mincho", serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h2 {
+      margin-top: 20px;
+      text-align: center;
+      color: #ffd700;
+    }
+
+    .video-wrapper {
+      width: 80%;
+      max-width: 500px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 20px #000;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .video-wrapper {
+        width: 90%;
+      }
+    }
+  </style>
+  <script>
+    // 4秒後にPOSTで自動送信
+    setTimeout(() => {
+      document.getElementById('next-form').submit();
+    }, 4000);
+  </script>
+</head>
+<body>
+  <div class="video-wrapper">
+    <video autoplay muted loop playsinline>
+      <source src="{{ url_for('static', filename='videos/' + video) }}" type="video/mp4">
+      お使いのブラウザは動画をサポートしていません。
+    </video>
+  </div>
+  <h2>占いをしています…</h2>
+  <form id="next-form" method="post" action="{{ url_for('chat') }}">
+    {% for key, value in data.items() %}
+      <input type="hidden" name="{{ key }}" value="{{ value }}">
+    {% endfor %}
+  </form>
+</body>
+</html>

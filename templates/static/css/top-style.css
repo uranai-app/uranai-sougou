@@ -1,0 +1,118 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Yu Mincho", serif;
+  background: linear-gradient(to bottom, #1a1c40, #3c2a55);
+  color: #f0e6ff;
+  background-image: url('/static/images/stars-background.jpg?v=2');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+}
+
+.container {
+  background-color: rgba(44, 30, 63, 0.9);
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #000;
+}
+
+header {
+  font-size: 40px;
+  text-align: center;
+  font-weight: bold;
+  color: #FFD700;
+  text-shadow: 2px 2px #000;
+  margin-bottom: 10px;
+}
+
+.catch {
+  text-align: center;
+  font-size: 18px;
+  background-color: rgba(60, 42, 85, 0.7);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.select-button {
+  display: block;
+  text-align: center;
+  margin: 30px auto;
+  padding: 20px 40px;
+  background-color: #5d3a9b;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 22px;
+  box-shadow: 0 0 10px #000;
+  transition: background-color 0.3s, transform 0.2s;
+  max-width: 300px;
+}
+
+.select-button:hover {
+  background-color: #7b4dbf;
+  transform: scale(1.05);
+}
+
+.usage-guide {
+  background-color: rgba(60, 42, 85, 0.8);
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.usage-guide img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.share-buttons {
+  margin-top: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.share-button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.share-x { background-color: #000; }
+.share-x:hover { background-color: #333; }
+.share-instagram { background-color: #E4405F; }
+.share-instagram:hover { background-color: #D03050; }
+.share-line { background-color: #00C300; }
+.share-line:hover { background-color: #00A000; }
+.share-facebook { background-color: #3b5998; }
+.share-facebook:hover { background-color: #2d4373; }
+
+footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+@media (max-width: 600px) {
+  header {
+    font-size: 32px;
+  }
+  .select-button {
+    font-size: 20px;
+    padding: 15px 30px;
+  }
+}

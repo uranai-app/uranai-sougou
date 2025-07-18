@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>スピル君とアルカちゃんの会話</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dialogue.css') }}">
+</head>
+<body>
+  <div class="dialogue-container">
+    <div class="dialogue-row left">
+      <img src="{{ url_for('static', filename='images/spill-kun.png') }}" alt="スピル君" class="character-icon">
+      <div class="speech-bubble spill">
+        ようこそ、AI占い総合館へ！僕が案内するね！
+      </div>
+    </div>
+    <div class="dialogue-row right">
+      <img src="{{ url_for('static', filename='images/arca-chan.png') }}" alt="アルカちゃん" class="character-icon">
+      <div class="speech-bubble arca">
+        ふふ、タロット占いは私に任せてね♡
+      </div>
+    </div>
+    <div class="dialogue-row left">
+      <img src="{{ url_for('static', filename='images/spill-kun.png') }}" alt="スピル君" class="character-icon">
+      <div class="speech-bubble spill">
+        それぞれ専門分野で占えるから君にピッタリのAIが見つかるよ！
+      </div>
+    </div>
+    <div class="dialogue-row right">
+      <img src="{{ url_for('static', filename='images/arca-chan.png') }}" alt="アルカちゃん" class="character-icon">
+      <div class="speech-bubble arca">
+        何度でも無料で相談できるんだから、試してみてね♪
+      </div>
+    </div>
+  </div>
+</body>
+</html>

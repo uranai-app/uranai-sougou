@@ -6,10 +6,19 @@ import smtplib
 from email.mime.text import MIMEText
 from datetime import datetime
 
-load_dotenv()  # ←これで .env の内容を読み込む
+# .env を読み込む
+load_dotenv()
 
-app = Flask(__name__)
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# 環境変数から APIキー取得
+api_key = os.getenv("OPENAI_API_KEY")
+
+# 明示的にチェックしてエラーハンドリング（オプションだけど推奨）
+if not api_key:
+    raise RuntimeError("OPENAI_API_KEY is not set in environment variables.")
+
+# OpenAI クライアントを初期化
+client = OpenAI(api_key=api_key)
+
 
 # ------------------------------
 # キャラクター定義

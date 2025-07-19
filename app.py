@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask, render_template, request
-from openai import OpenAI
+import openai  # ← クラスじゃなくモジュールとしてインポート
 import smtplib
 from email.mime.text import MIMEText
 from datetime import datetime
@@ -12,12 +12,13 @@ load_dotenv()
 # 環境変数から APIキー取得
 api_key = os.getenv("OPENAI_API_KEY")
 
-# 明示的にチェックしてエラーハンドリング（オプションだけど推奨）
+# 明示的にチェック（オプションだけど推奨）
 if not api_key:
     raise RuntimeError("OPENAI_API_KEY is not set in environment variables.")
 
-# OpenAI クライアントを初期化
-client = OpenAI(api_key=api_key)
+# OpenAI API キーを設定
+openai.api_key = api_key
+
 
 
 # ------------------------------

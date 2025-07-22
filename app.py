@@ -1,21 +1,22 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask, render_template, request
-from openai import OpenAI
+import openai
 import smtplib
 from email.mime.text import MIMEText
 from datetime import datetime
 
+# .env 読み込み
 load_dotenv()
 
-# Flask アプリの初期化（←これが必要！）
+# Flask 初期化
 app = Flask(__name__)
 
-api_key = os.getenv("OPENAI_API_KEY")
-if not api_key:
+# APIキーが設定されているかチェック（明示的なエラー）
+if not os.getenv("OPENAI_API_KEY"):
     raise RuntimeError("OPENAI_API_KEY is not set in environment variables.")
+openai.api_key = os.getenv("OPENAI_API_KEY") 
 
-client = OpenAI(api_key=api_key)
 
 # ------------------------------
 # キャラクター定義
@@ -241,7 +242,7 @@ def chat():
 ・キャラクター設定を厳守してください
 """
 
-    response = client.chat.completions.create(
+    response = openai.ChatCompletion.create(
         model="gpt-4o",
         temperature=1.2,
         messages=[
@@ -272,16 +273,20 @@ def contact():
         email = request.form.get('email')
         message = request.form.get('message')
 
-        # メールの内容を作成
+        # 環境変数からGmail認証情報を取得
+        gmail_user = os.getenv("GMAIL_USER")
+        gmail_pass = os.getenv("GMAIL_PASS")
+
+        # メール本文
         body = f"名前: {name}\nメール: {email}\nメッセージ:\n{message}"
         msg = MIMEText(body)
         msg['Subject'] = 'AI占い総合館 - お問い合わせ'
-        msg['From'] = 'ys04160416ys@gmail.com'  # 自分の Gmail
-        msg['To'] = 'ys04160416ys@gmail.com'    # 宛先 Gmail（同じでOK）
+        msg['From'] = gmail_user
+        msg['To'] = gmail_user
 
         try:
             smtp = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-            smtp.login('ys04160416ys@gmail.com', 'ddsx atty xvei axdl')  # アプリパスワード
+            smtp.login(gmail_user, gmail_pass)
             smtp.send_message(msg)
             smtp.quit()
             return "送信成功！"
@@ -295,7 +300,3 @@ def contact():
 # ------------------------------
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
-
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')

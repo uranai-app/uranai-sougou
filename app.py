@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask, render_template, request
-from openai import OpenAI  # ← ここポイント！
+from openai import OpenAI  # ← ここ正解！
 import smtplib
 from email.mime.text import MIMEText
 from datetime import datetime
@@ -9,16 +9,13 @@ from datetime import datetime
 # .env 読み込み
 load_dotenv()
 
-# Flask 初期化
 app = Flask(__name__)
 
-# APIキーが設定されているかチェック（明示的なエラー）
 api_key = os.getenv("OPENAI_API_KEY")
 if not api_key:
     raise RuntimeError("OPENAI_API_KEY is not set in environment variables.")
 
-# ✅ 新しいClient方式で初期化
-client = OpenAI()
+client = OpenAI(api_key=api_key)  # ← ここもOK
 
 
 # ------------------------------
@@ -220,7 +217,6 @@ def chat():
     today = datetime.now().strftime("%Y年%m月%d日")
 
     character_desc = next((c["desc"] for c in characters if c["name"] == character_name), "")
-
     question = "\n".join(
         [f"{key}: {value}" for key, value in request.form.items() if key not in ("character", "category")]
     )
@@ -231,11 +227,11 @@ def chat():
 【キャラクターの設定・口調・性格】
 {character_desc}
 
-【占いカテゴリ】
+【占いカテゴリー】
 {category}
 
-・キャラクター設定を必ず厳守する
-・相談者情報は以下です
+・キャラ設定を必ず厳密に守ること
+・相談者情報は以下の通り
 {question}
 ・今日は{today}です。
 """
@@ -243,7 +239,7 @@ def chat():
     user_content = f"""
 【依頼】
 ・{category}に合わせた本格的な占いを行ってください
-・キャラクター設定を厳守してください
+・キャラクター設定を厳密に守ってください
 """
 
     try:
@@ -280,11 +276,9 @@ def contact():
         email = request.form.get('email')
         message = request.form.get('message')
 
-        # 環境変数からGmail認証情報を取得
         gmail_user = os.getenv("GMAIL_USER")
         gmail_pass = os.getenv("GMAIL_PASS")
 
-        # メール本文
         body = f"名前: {name}\nメール: {email}\nメッセージ:\n{message}"
         msg = MIMEText(body)
         msg['Subject'] = 'AI占い総合館 - お問い合わせ'
@@ -303,7 +297,7 @@ def contact():
     return render_template('contact.html')
 
 # ------------------------------
-# サーバー起動
+# ローカルサーバー起動
 # ------------------------------
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)

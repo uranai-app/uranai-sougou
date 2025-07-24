@@ -239,20 +239,19 @@ def chat():
 """
 
     try:
-        response = client.chat.completions.create(
-            model="gpt-4o",
-            temperature=1.2,
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_content}
-            ]
+        response = client.chat.completions.create(  # ← ここ！
+                model="gpt-4o",
+                temperature=1.2,
+                messages=[
+                     {"role": "system", "content": system_prompt},
+                     {"role": "user", "content": user_content}
+               ]
         )
         result = response.choices[0].message.content
     except Exception as e:
         result = f"エラーが発生しました: {e}"
 
     return render_template("result.html", character=character_name, category=category, result=result)
-
 
 @app.route("/privacy")
 def privacy():

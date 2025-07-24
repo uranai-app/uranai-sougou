@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask, render_template, request
-from openai import OpenAI  # ← ここ正解！
+from openai import OpenAI  # ← 新しいやり方！
 import smtplib
 from email.mime.text import MIMEText
 from datetime import datetime
@@ -9,13 +9,11 @@ from datetime import datetime
 # .env 読み込み
 load_dotenv()
 
+# Flask 初期化
 app = Flask(__name__)
 
-api_key = os.getenv("OPENAI_API_KEY")
-if not api_key:
-    raise RuntimeError("OPENAI_API_KEY is not set in environment variables.")
-
-client = OpenAI(api_key=api_key)  # ← ここもOK
+# OpenAIクライアント初期化（環境変数から自動取得）
+client = OpenAI()
 
 
 # ------------------------------
@@ -196,12 +194,7 @@ def form():
         {"name": "your_name", "label": "あなたの名前"},
         {"name": "question", "label": "相談内容"},
     ])
-    return render_template(
-        "form.html",
-        character=character_name,
-        category=category,
-        form_fields=form_fields
-    )
+    return render_template("form.html", character=character_name, category=category, form_fields=form_fields)
 
 @app.route("/loading", methods=["POST"])
 def loading():
@@ -243,7 +236,7 @@ def chat():
 """
 
     try:
-        response = client.chat.completions.create(
+        response = openai.ChatCompletion.create(
             model="gpt-4o",
             temperature=1.2,
             messages=[
@@ -297,7 +290,7 @@ def contact():
     return render_template('contact.html')
 
 # ------------------------------
-# ローカルサーバー起動
+# ローカル実行時のみ起動
 # ------------------------------
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)

@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask, render_template, request
-import openai
+from openai import OpenAI  # ← ここポイント！
 import smtplib
 from email.mime.text import MIMEText
 from datetime import datetime
@@ -13,9 +13,12 @@ load_dotenv()
 app = Flask(__name__)
 
 # APIキーが設定されているかチェック（明示的なエラー）
-if not os.getenv("OPENAI_API_KEY"):
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
     raise RuntimeError("OPENAI_API_KEY is not set in environment variables.")
-openai.api_key = os.getenv("OPENAI_API_KEY") 
+
+# ✅ 新しいClient方式で初期化
+client = OpenAI(api_key=api_key)
 
 
 # ------------------------------
@@ -222,21 +225,6 @@ def chat():
         [f"{key}: {value}" for key, value in request.form.items() if key not in ("character", "category")]
     )
 
-    system_prompt = f""" ... """
-    user_content = f""" ... """
-
-    response = openai.chat.completions.create(  # ※ v1形式になってるかも確認！
-        model="gpt-4o",
-        temperature=1.2,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_content}
-        ]
-    )
-    result = response.choices[0].message.content
-
-    return render_template("result.html", character=character_name, category=category, result=result)
-
     system_prompt = f"""
 あなたは「{character_name}」というキャラクターになりきって、以下の占いを行います。
 
@@ -258,15 +246,18 @@ def chat():
 ・キャラクター設定を厳守してください
 """
 
-    response = openai.ChatCompletion.create(
-        model="gpt-4o",
-        temperature=1.2,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_content}
-        ]
-    )
-    result = response.choices[0].message.content
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            temperature=1.2,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_content}
+            ]
+        )
+        result = response.choices[0].message.content
+    except Exception as e:
+        result = f"エラーが発生しました: {e}"
 
     return render_template("result.html", character=character_name, category=category, result=result)
 

@@ -212,14 +212,21 @@ def loading():
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    character_name = request.form.get("character")
-    category = request.form.get("category")
-    today = datetime.now().strftime("%Y年%m月%d日")
-    character_desc = next((c["desc"] for c in characters if c["name"] == character_name), "")
+    ...
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-4o",
+            temperature=1.2,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_content}
+            ]
+        )
+        result = response.choices[0].message.content
+    except Exception as e:
+        result = f"エラーが発生しました：{e}"  # ← ここでエラー内容を表示させる！
 
-    question = "\n".join(
-        [f"{key}: {value}" for key, value in request.form.items() if key not in ("character", "category")]
-    )
+    return render_template("result.html", character=character_name, category=category, result=result)
 
     system_prompt = f"""
 あなたは「{character_name}」というキャラクターになりきって、以下の占いを行います。
@@ -258,13 +265,13 @@ def chat():
 def privacy():
     return render_template("privacy.html")
 
+@app.route("/profile")
+def profile():
+    return render_template("profile.html")
+
 @app.route("/about")
 def about():
     return render_template("about.html")
-
-@app.route("/service")
-def service():
-    return render_template("service.html")
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():

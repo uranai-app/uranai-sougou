@@ -18,7 +18,7 @@ if not api_key:
     raise RuntimeError("OPENAI_API_KEY is not set in environment variables.")
 
 # ✅ 新しいClient方式で初期化
-client = OpenAI(api_key=api_key)
+client = OpenAI()
 
 
 # ------------------------------

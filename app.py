@@ -212,19 +212,28 @@ def loading():
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    ...
-    try:
-        response = openai.ChatCompletion.create(
-            model="gpt-4o",
-            temperature=1.2,
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_content}
-            ]
-        )
-        result = response.choices[0].message.content
-    except Exception as e:
-        result = f"エラーが発生しました：{e}"  # ← ここでエラー内容を表示させる！
+    character_name = request.form.get("character")
+    category = request.form.get("category")
+    today = datetime.now().strftime("%Y年%m月%d日")
+
+    character_desc = next((c["desc"] for c in characters if c["name"] == character_name), "")
+
+    question = "\n".join(
+        [f"{key}: {value}" for key, value in request.form.items() if key not in ("character", "category")]
+    )
+
+    system_prompt = f""" ... """
+    user_content = f""" ... """
+
+    response = openai.chat.completions.create(  # ※ v1形式になってるかも確認！
+        model="gpt-4o",
+        temperature=1.2,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_content}
+        ]
+    )
+    result = response.choices[0].message.content
 
     return render_template("result.html", character=character_name, category=category, result=result)
 

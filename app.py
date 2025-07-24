@@ -13,8 +13,9 @@ load_dotenv()
 app = Flask(__name__)
 
 # OpenAIクライアント初期化（環境変数から自動取得）
-client = OpenAI()
-
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    raise RuntimeError("OPENAI_API_KEY is not set in environment variables.")
 
 # ------------------------------
 # キャラクター定義

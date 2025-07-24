@@ -12,10 +12,12 @@ load_dotenv()
 # Flask 初期化
 app = Flask(__name__)
 
-# OpenAIクライアント初期化（環境変数から自動取得）
 api_key = os.getenv("OPENAI_API_KEY")
 if not api_key:
     raise RuntimeError("OPENAI_API_KEY is not set in environment variables.")
+
+client = OpenAI(api_key=api_key)
+
 
 # ------------------------------
 # キャラクター定義
@@ -237,7 +239,7 @@ def chat():
 """
 
     try:
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-4o",
             temperature=1.2,
             messages=[
@@ -250,6 +252,7 @@ def chat():
         result = f"エラーが発生しました: {e}"
 
     return render_template("result.html", character=character_name, category=category, result=result)
+
 
 @app.route("/privacy")
 def privacy():

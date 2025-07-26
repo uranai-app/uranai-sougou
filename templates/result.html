@@ -157,7 +157,8 @@
   <header>AI占い総合館 - 結果</header>
 
   <div class="result-container">
-    <img class="character-image" src="{{ url_for('static', filename='images/' ~ character ~ '.png') }}" alt="{{ character }}">
+    {% set image_filename = next(c['image'] for c in characters if c['name'] == character) %}
+    <img class="character-image" src="{{ url_for('static', filename='images/' ~ image_filename) }}" alt="{{ character }}">
     <div class="character-name">{{ character }}</div>
     <div class="category-name">「{{ category }}」の占い結果</div>
     <div class="result-text">{{ result }}</div>

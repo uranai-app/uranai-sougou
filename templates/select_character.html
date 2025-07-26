@@ -187,19 +187,25 @@
         {% endfor %}
       </div>
     </div>
+
+    {% if char.name == "フウガ" or char.name == "カグヤ" %}
+    <div class="ad-slot" style="text-align: center; margin: 30px 0; width: 100%;">
+      <p style="color:#ccc;">【ここに広告が入ります（{{ char.name }}の後）】</p>
+    </div>
+    {% endif %}
+
     {% endfor %}
   </div>
 
   <footer class="fixed-footer">
-   <div class="footer-links">
-    <a href="/">トップ</a>
-    <a href="/select_character">キャラクター選択</a>
-    <a href="/about">運営者情報</a>
-    <a href="/privacy">プライバシーポリシー</a>
-    <a href="/contact">お問い合わせ</a>
-   </div>
+    <div class="footer-links">
+      <a href="/">トップ</a>
+      <a href="/select_character">キャラクター選択</a>
+      <a href="/about">運営者情報</a>
+      <a href="/privacy">プライバシーポリシー</a>
+      <a href="/contact">お問い合わせ</a>
+    </div>
   </footer>
-
 
   <script>
     const accordions = document.querySelectorAll('.accordion-button');

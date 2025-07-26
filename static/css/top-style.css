@@ -60,7 +60,6 @@ header {
   border-radius: 0;
 }
 
-/* スマホ対応動画サイズ */
 @media (max-width: 600px) {
   .video-wrapper video {
     width: 95%;
@@ -114,17 +113,14 @@ header {
   border: none;
 }
 
-/* スピル君：左縁紫 */
 .character-dialogue.spill {
   border-left: 5px solid #a678de;
 }
 
-/* アルカちゃん：右吹き出し時のみ右縁赤 */
 .dialogue-row.right .character-dialogue.arca {
   border-right: 5px solid #e4405f;
 }
 
-/* アルカちゃん：左吹き出し時は縁なし */
 .dialogue-row.left .character-dialogue.arca {
   border: none;
 }
@@ -244,11 +240,34 @@ header {
 .share-facebook { background-color: #3b5998; }
 .share-facebook:hover { background-color: #2d4373; }
 
-footer {
-  margin-top: 40px;
+/* ───────────────────
+   フッター（修正済み）
+─────────────────── */
+.fixed-footer {
+  background-color: rgba(60, 42, 85, 0.9);
+  padding: 20px 0;
   text-align: center;
-  font-size: 14px;
-  opacity: 0.6;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.footer-links a {
+  color: #ffd700;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
 }
 
 /* ───────────────────
@@ -272,6 +291,7 @@ footer {
     padding: 15px 30px;
   }
 }
+
 /* ───────────────────
    キャラクター画像共通スタイル
 ─────────────────── */
@@ -288,20 +308,4 @@ footer {
   transform: scale(1.03);
   box-shadow: 0 6px 18px rgba(255, 215, 0, 0.7);
   border-color: #ffd700;
-}
-.fixed-footer {
-  background-color: rgba(60, 42, 85, 0.9);
-  padding: 15px 0;
-  text-align: center;
-}
-
-.footer-links a {
-  color: #ffd700;  /* ← ゴールド */
-  text-decoration: none;
-  margin: 0 10px;
-  font-weight: bold;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
 }

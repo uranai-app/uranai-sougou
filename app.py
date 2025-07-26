@@ -287,14 +287,20 @@ def contact():
             smtp.login(gmail_user, gmail_pass)
             smtp.send_message(msg)
             smtp.quit()
-            return "送信成功！"
+            return render_template('contact_complete.html', name=name)
         except Exception as e:
-            return f"送信失敗: {e}"
+            error = f"送信に失敗しました: {e}"
+            return render_template('contact.html', error=error)
 
     return render_template('contact.html')
 
-# ------------------------------
-# ローカル実行時のみ起動
-# ------------------------------
+# robots.txt のルート
+from flask import send_from_directory
+
+@app.route('/robots.txt')
+def robots_txt():
+    return send_from_directory(app.static_folder, 'robots.txt')
+
+# 実行
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)

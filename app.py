@@ -248,11 +248,11 @@ def chat():
                      {"role": "user", "content": user_content}
                ]
         )
-        result = response.choices[0].message.content
+        result = response.choices[0].message.content.strip()
     except Exception as e:
         result = f"エラーが発生しました: {e}"
 
-    return render_template("result.html", character=character_name, category=category, result=result)
+    return render_template("result.html", character=character_name, category=category, result=result, characters=characters)
 
 @app.route("/privacy")
 def privacy():

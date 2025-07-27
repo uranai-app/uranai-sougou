@@ -301,11 +301,13 @@ from flask import send_from_directory
 def robots_txt():
     return send_from_directory(app.static_folder, 'robots.txt')
 
-from flask import send_file
+from flask import Response
 
 @app.route('/sitemap.xml')
 def sitemap():
-    return send_file('sitemap.xml', mimetype='application/xml')
+    with open('static/sitemap.xml', 'r', encoding='utf-8') as f:
+        sitemap_content = f.read()
+    return Response(sitemap_content, mimetype='application/xml')
 
 # 実行
 if __name__ == "__main__":

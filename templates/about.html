@@ -39,7 +39,30 @@
       padding-bottom: 20px;
     }
   </style>
+
+  <!-- 構造化データ (Organizationスキーマ) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AI占い総合館",
+    "url": "https://uranai-sougou.com",
+    "founder": "神崎 雄洸",
+    "description": "AIを活用した占い・性格診断コンテンツを提供するサイト",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "仙台市",
+      "addressCountry": "JP"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Support",
+      "url": "https://uranai-sougou.com/contact"
+    }
+  }
+  </script>
 </head>
+
 <body>
   <div class="about-container">
     <h1>運営者情報</h1>
@@ -47,17 +70,27 @@
     <p><strong>運営者：</strong>神崎 雄洸</p>
     <p><strong>所在地：</strong>宮城県仙台市</p>
     <p><strong>連絡先：</strong>お問い合わせフォームよりご連絡ください。</p>
+
     <p><strong>運営目的：</strong><br>
-      当サイトは、私が今まで実施した膨大な占いデータをAIに勉強させてそれを活用した占い・性格診断コンテンツを提供する情報サイトです。エンタメ性と安心感を大切にしながら、ユーザーの悩みに寄り添うサービスを目指しています。
+      当サイトは、AIを活用した本格的な占い体験を提供する情報サイトです。エンターテイメント性だけでなく、ユーザーの不安や悩みに寄り添えるような内容を目指しています。
     </p>
+
+    <p><strong>背景・立ち上げのきっかけ：</strong><br>
+      私は10年以上にわたって占いの世界に携わってきました。タロット・姓名判断・手相・数秘術などのデータや実体験をもとに、AIと組み合わせて“寄り添う占い”を提供できないかと考え、このサイトを立ち上げました。
+    </p>
+
+    <p><strong>ユーザーの皆様へ：</strong><br>
+      このAI占い総合館は、占い結果だけでなく「安心感」や「気づき」を提供することを大切にしています。相談内容に応じてキャラクターを選び、自分らしく進めるスタイルになっております。ぜひ気軽に試してみてくださいね。
+    </p>
+
     <p><strong>免責事項：</strong><br>
-      当サイトの占いはあくまでエンターテイメントであり、診断結果の正確性・効果を保証するものではありません。自己判断のうえご利用ください。
+      本サイトの占い結果は、あくまでエンターテイメントを目的としたものです。最終的なご判断はご自身の責任で行っていただくようお願いいたします。
     </p>
   </div>
 
   <!-- 広告エリア：フッター直前 -->
   <div class="ad-slot" style="text-align: center; margin: 40px 0;">
-    <!-- 広告コードをここに貼り付け -->
+    <!-- AdSense 広告コードをここに貼り付け -->
     <p style="color:#ccc;">【このエリアに広告が入ります】</p>
   </div>
 

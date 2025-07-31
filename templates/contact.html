@@ -6,23 +6,29 @@
   <title>お問い合わせ - AI占い総合館</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/top-style.css') }}">
   <style>
+    body {
+      background-color: #1a1a2e;
+      font-family: "Helvetica Neue", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
     .contact-container {
-      max-width: 600px;
-      margin: 30px auto;
-      padding: 20px;
-      background-color: rgba(60, 42, 85, 0.9);
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: rgba(60, 42, 85, 0.95);
       border-radius: 10px;
       color: #f0e6ff;
       box-shadow: 0 0 10px #000;
     }
     h1 {
-      text-align: center;
       color: #ffd700;
+      text-align: center;
       margin-bottom: 20px;
     }
     p {
-      margin-bottom: 20px;
       line-height: 1.7;
+      margin-bottom: 15px;
     }
     label {
       display: block;
@@ -32,15 +38,15 @@
     }
     input, textarea {
       width: 100%;
-      padding: 8px;
+      padding: 10px;
       border-radius: 5px;
       border: none;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
     button {
       background-color: #a678de;
       color: #ffd700;
-      padding: 10px 20px;
+      padding: 12px 24px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
@@ -55,17 +61,39 @@
       margin-top: 40px;
       font-size: 14px;
       opacity: 0.7;
+      padding-bottom: 20px;
+    }
+    .footer-links a {
+      margin: 0 10px;
+      color: #f0e6ff;
+      text-decoration: none;
     }
   </style>
+
+  <!-- 構造化データ（SEO用） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "お問い合わせ - AI占い総合館",
+    "url": "https://uranai-sougou.com/contact",
+    "description": "AI占い総合館へのご意見・ご要望・不具合報告はこちらからお寄せください。"
+  }
+  </script>
 </head>
 <body>
   <div class="contact-container">
     <h1>お問い合わせ</h1>
     <p>
-      AI占い総合館へのお問い合わせは以下のフォームよりお願いします。<br>
-      ご意見・ご要望・不具合報告など、お気軽にお寄せください。<br>
-      返信が必要な場合は、メールアドレスを正確にご入力ください。
+      AI占い総合館では、サービスの品質向上とユーザー満足度向上のため、皆さまからのお問い合わせを歓迎しています。<br>
+      占い結果の不具合、ご意見・ご要望、コラボ・取材依頼など、内容を問わずお気軽にご連絡ください。<br>
+      ご返信が必要な場合は、メールアドレスを正確にご記入ください。
     </p>
+    <p>
+      お寄せいただいた情報は、お問い合わせ対応の目的以外には使用せず、<strong>第三者に提供することは一切ありません。</strong><br>
+      詳細は <a href="/privacy" style="color:#ffd700;">プライバシーポリシー</a> をご確認ください。
+    </p>
+
     <form method="post" action="/contact">
       <label for="name">お名前</label>
       <input type="text" id="name" name="name" required>
@@ -79,7 +107,6 @@
       <button type="submit">送信する</button>
     </form>
   </div>
-  </div>
 
   <footer class="fixed-footer">
     <div class="footer-links">
@@ -92,4 +119,3 @@
   </footer>
 </body>
 </html>
-
